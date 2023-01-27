@@ -5,12 +5,33 @@
 
 Console.Clear();
 
-public static int Power(int a, int b) 
-{ 
-    int result = 1; 
-    for (int i = 0; i < b; i++) 
-    { 
-        result *= a; 
-    } 
-    return result; 
+int GetNumber(string message)
+{
+	int result = 0;
+	while (true)
+	{
+		Console.Write(message);
+		if (int.TryParse(Console.ReadLine(), out result))
+		{
+			break;
+		}
+		else
+		{
+			Console.WriteLine("Ошибка!");
+		}
+	}
+	return result;
 }
+
+int number = GetNumber("Введите число: ");
+int num = number;
+int sum = 0;
+
+while (number > 0)
+{
+    sum += number % 10;
+    number /= 10;
+}
+
+Console.Write($"Сумма цифр числа {num} = {sum}");
+
