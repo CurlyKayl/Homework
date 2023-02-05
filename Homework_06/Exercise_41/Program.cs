@@ -6,13 +6,9 @@
 
 Console.Clear();
 
-void GetNumbers()
-{
-	Console.WriteLine("Введите числа: ");
-	string nums = Console.ReadLine();
-	string[] words = nums.Split("");
-	Console.WriteLine(words);
-}
-
-GetNumbers();
-//Console.WriteLine(numbers);
+Console.WriteLine("Введите числа через пробел: ");
+string[] arr = Console.ReadLine()!.Split(" ");
+int count = 0;
+foreach (var nums in arr)
+	if (int.Parse(nums) > 0) count++; 
+Console.WriteLine($"Чисел больше нуля в массиве: {count}");
