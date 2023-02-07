@@ -13,7 +13,7 @@ int GetNumbers(string message)
 	int result = 0;
 	while (true)
 	{
-		Console.WriteLine(message);
+		Console.Write(message);
 
 		if (int.TryParse(Console.ReadLine(), out result) && result > 0)
 		{
@@ -35,8 +35,7 @@ double[,] InitMatrix(int rows, int columns)
 	{
 		for (int n = 0; n < columns; n++)
 		{
-			matrix[m, n] = rnd.NextDouble();
-			double matrixCut = Math.Truncate(matrix * 100) / 100;
+			matrix[m, n] = Math.Round(rnd.NextDouble(), 2) * 10;
 		}
 	}
 	return matrix;
@@ -48,14 +47,16 @@ void PrintMatrix(double[,] matrix)
 	{
 		for (int n = 0; n < matrix.GetLength(1); n++)
 		{
-			Console.Write($"{matrix[m,n] }");
+			Console.Write($"{matrix[m, n]}   ");
 		}
+		Console.WriteLine();
+		Console.WriteLine();
 	}
-	Console.WriteLine();
 }
 
 int countOfRows = GetNumbers("Введите количество строк в матрице: ");
 int countOfColumns = GetNumbers("Введите количество столбцов в матрице: ");
+Console.WriteLine();
 double[,] matrix = InitMatrix(countOfRows, countOfColumns);
 
 PrintMatrix(matrix);
