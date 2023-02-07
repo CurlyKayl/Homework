@@ -30,12 +30,14 @@ int GetNumbers(string message)
 double[,] InitMatrix(int rows, int columns)
 {
 	double[,] matrix = new double[rows, columns];
+	int first = -10;
+	int last = 10;
 	Random rnd = new Random();
 	for (int m = 0; m < rows; m++)
 	{
 		for (int n = 0; n < columns; n++)
 		{
-			matrix[m, n] = Math.Round(rnd.NextDouble(), 2) * 10;
+			matrix[m, n] = Math.Round(rnd.NextDouble() * (last - first) + first, 1);
 		}
 	}
 	return matrix;
