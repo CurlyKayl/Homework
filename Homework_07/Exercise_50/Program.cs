@@ -47,7 +47,7 @@ void MatrixElement(int[,] matrix)
 	int columns = 0;
 	while (true)
 	{
-		Console.Write("Введите строку эмелента матрицы: ");
+		Console.Write("Введите строку элемента матрицы: ");
 		if (int.TryParse(Console.ReadLine(), out rows)) 
 		{
 			break;
@@ -59,7 +59,7 @@ void MatrixElement(int[,] matrix)
 	}
 	while (true)
 	{
-		Console.Write("Введите столбец эмелента матрицы: ");
+		Console.Write("Введите столбец элемента матрицы: ");
 		if (int.TryParse(Console.ReadLine(), out columns))
 		{
 			break;
