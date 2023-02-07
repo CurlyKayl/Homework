@@ -11,35 +11,18 @@
 
 Console.Clear();
 
-int GetNumber(string message)
+int[,] InitRandomMatrix()
 {
-	int result = 0;
-	while (true)
-	{
-		Console.Write(message);
-		if (int.TryParse(Console.ReadLine(), out result))
-		{
-			break;
-		}
-		else
-		{
-			Console.WriteLine("Ошибка. Не верный ввод. Повторите ввод.");
-		}
-	}
+	Random ran = new Random();
+	int rows = ran.Next(1, 10);
+	int columns = ran.Next(1, 10);
 
-	return result;
-}
-
-
-int[,] InitMatrix(int rows, int columns)
-{
 	int[,] matrix = new int[rows, columns];
-	Random rnd = new Random();
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
 		{
-			matrix[i,j] = rnd.Next(1, 10);
+			matrix[i,j] = ran.Next(1, 10);
 		}
 	}
 	return matrix;
@@ -55,35 +38,50 @@ void PrintMatrix(int[,] matrix)
 		}
 		Console.WriteLine();
 	}
+
 }
 
-Random ran = new Random();
-//int ran1 = ran.Next(1, 10);
+void MatrixElement(int[,] matrix)
+{
+	int rows = 0;
+	int columns = 0;
+	while (true)
+	{
+		Console.Write("Введите строку эмелента матрицы: ");
+		if (int.TryParse(Console.ReadLine(), out rows)) 
+		{
+			break;
+		}
+		else
+		{
+			Console.WriteLine("Ошибка. Не верный ввод. Повторите ввод.");
+		}
+	}
+	while (true)
+	{
+		Console.Write("Введите столбец эмелента матрицы: ");
+		if (int.TryParse(Console.ReadLine(), out columns))
+		{
+			break;
+		}
+		else
+		{
+			Console.WriteLine("Ошибка. Не верный ввод. Повторите ввод.");
+		}
 
+	}
+	if (rows <= matrix.GetLength(0) && columns <= matrix.GetLength(1))
+	{
+		Console.WriteLine($"Элемент с индексами {rows} и {columns} равен: {matrix[rows, columns]}");
+	}
+	else
+	{
+		Console.WriteLine("Такого элемента в матрице нет.");
+	}
+}
 
-
-
-//int countOfRows = GetNumber("Введите количество строк в матрице: ");
-//int countOfColumns = GetNumber("Введите количество столбцов в матрице: ");
-int countOfRows = ran.Next(1, 10);
-int countOfColumns = ran.Next(1, 10);
-
-Console.WriteLine();
-int[,] matrix = InitMatrix(countOfRows, countOfColumns);
-//int[,] matrix = InitMatrix(ran1, ran1);
-
+int[,] matrix = InitRandomMatrix();
 PrintMatrix(matrix);
-
-int rowsOfPosicion = GetNumber("Введите номер строки в матрице: ");
-int columnsOfPosicion = GetNumber("Введите номер столбца в матрице: ");
-
-if (rowsOfPosicion > countOfRows || columnsOfPosicion > countOfColumns && countOfColumns == 0)
-{
-	Console.WriteLine("Такого элемента в матрице нет.");
-}
-else
-{
-	Console.WriteLine($"Эмелент матрицы с индексами: {rowsOfPosicion}, {columnsOfPosicion} равен {matrix[rowsOfPosicion, columnsOfPosicion]}");
-}
-
+Console.WriteLine();
+MatrixElement(matrix);
 
