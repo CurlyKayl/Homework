@@ -52,7 +52,6 @@ void PrintMatrix(int[,] matrix)
 		}
 		Console.WriteLine();
 	}
-
 }
 
 void GetMediumColumns(int[,] matrix)
