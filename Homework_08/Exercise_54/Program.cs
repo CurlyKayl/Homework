@@ -96,6 +96,7 @@ int[,] SortMatrix(int[,] matrix)
 int rows = GetNumber("Введите количество строк в матрице: ");
 int columns = GetNumber("Введите количество столбцов в матрице: ");
 int[,] matrix = InitMatrix(rows, columns);
+Console.WriteLine();
 PrintMatrix(matrix);
 Console.WriteLine();
 PrintMatrix(SortMatrix(matrix));
