@@ -1,4 +1,4 @@
-﻿// Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел.
+﻿// Задача 60. Сформируйте трёхмерный массив из неповторяющихся двузначных чисел.
 // Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 // Массив размером 2 x 2 x 2
 // 66(0,0,0) 25(0,1,0)
@@ -8,3 +8,59 @@
 
 Console.Clear();
 
+int GetNumber(string message)
+{
+	int result = 0;
+	while (true)
+	{
+		Console.Write(message);
+
+		if (int.TryParse(Console.ReadLine(), out result) && result > 0)
+		{
+			break;
+		}
+			else
+		{
+		Console.WriteLine("Ошибка. Не корректный ввод. Повторите ввод.");
+		}
+	}	
+	return result;
+}
+
+int[,,] InitMatrix(int dimentionX, int dimentionY, int dimentionZ)
+{
+    int[,,] matrix = new int[dimentionZ, dimentionX, dimentionY];
+    Random random = new Random();
+    for (int z = 0; z < dimentionZ; z++)
+    {
+        for (int x = 0; x < dimentionX; x++)
+        {
+            for (int y = 0; y < dimentionY; y++)
+            {
+                matrix[z, x, y] = random.Next(10, 100);
+            }
+        }
+    }
+    return matrix;
+}
+
+void PrintMatrix(int[,,] matrix)
+{
+    for (int z = 0; z < matrix.GetLength(0); z++)
+    {
+        for (int x = 0; x < matrix.GetLength(1); x++)
+        {
+            for (int y = 0; y < matrix.GetLength(2); y++)
+            {
+                Console.Write($"{matrix[z, x, y]}({z},{x},{y}) ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+int y = GetNumber("Введите количество строк массива: ");
+int x = GetNumber("Введите количество столбцов массива: ");
+int z = GetNumber("Введите количество этажей массива: ");
+int[,,] matrix = InitMatrix(x, y, z);
+PrintMatrix(matrix);
