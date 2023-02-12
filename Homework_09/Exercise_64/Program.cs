@@ -5,3 +5,37 @@
 
 Console.Clear();
 
+int GetNumber(string message)
+{
+	int result = 0;
+	while (true)
+	{
+		Console.Write(message);
+
+		if (int.TryParse(Console.ReadLine(), out result) && result > 0)
+		{
+			break;
+		}
+		else
+		{
+			Console.WriteLine("Ошибка. Не корректный ввод. Повторите ввод.");
+		}
+	}	
+	return result;
+}
+
+void Numbers(int num)
+{
+    if (num > 1)
+    {
+        Console.Write($"{num}, ");
+        Numbers(num - 1);
+    }
+    else
+        Console.WriteLine(1);
+}
+
+
+int num = GetNumber("Введите целое положительное число: ");
+Numbers(num);
+//Console.WriteLine(StringOfNumbers(num));
